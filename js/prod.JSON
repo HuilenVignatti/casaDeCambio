@@ -1,0 +1,29 @@
+[
+    {
+        "id": 1,
+        "nombre": "Real",
+        "precioVenta": 35 ,
+        "precioCompra": 40
+        
+    
+    },
+    {
+        "id":2,
+        "nombre": "Dolar",
+        "precioVenta": 280 ,
+        "precioCompra": 290
+        
+    
+    },
+    {
+        "id": 3,
+        "nombre": "Euro",
+        "precioVenta": 295 ,
+        "precioCompra": 305
+        
+    
+    }
+
+
+
+]

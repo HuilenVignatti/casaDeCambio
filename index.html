@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="./css/style.css">
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
+    <title>Casa de cambio del Litoral</title>
+</head>
+<body>
+
+
+
+
+    <header>
+        <h1> Casa de Cambio del Litoral</h1>
+    </header>
+    <section>
+        <h2>BIENVENIDO A NUESTRO SITIO WEB</h2>
+        <h3>La mejor cotización regional</h3>
+    </section>
+
+    <div id="cardMoneda" class="container row gap-3 justify-content-center">
+    </div>
+
+<section class="form-container">
+
+    <form id="form" class="formulario">
+        <h2>Compra</h2>
+
+        <input type="radio" name="cambio" id="unoCompra">Dolar
+        <input type="radio" name="cambio" id="dosCompra">Euro
+        <input type="radio" name="cambio" id="tresCompra">Real
+
+        <p>Ingrese el monto que desea comprar</p>
+
+        <input type="number" id="monto">
+        <input type="button" value="Calcular" id="botonCotizar" onclick="convertir()">
+        <div id="mensajeCompra"></div>
+    </form>
+
+    <form id="formVenta" class="formulario">
+        <h2>Venta</h2>
+
+        <input type="radio" name="cambio" id="unoVenta">Dolar
+        <input type="radio" name="cambio" id="dosVenta">Euro
+        <input type="radio" name="cambio" id="tresVenta">Real
+
+        <p>Ingrese el monto que desea vender</p>
+        <input type="number" id="montoVenta">
+        <input type="button" value="Calcular" id="botonCotizar" onclick="convertirVenta()">
+            <div id="mensajeVenta"></div>
+    </form>
+</section>
+
+
+<section id="mostrarTotal">
+
+
+</section>
+
+
+
+
+    <script src="./js/app.js"></script>
+
+</body>
+</html>
