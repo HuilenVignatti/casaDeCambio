@@ -1,3 +1,4 @@
+
 class Moneda {
     constructor (id, nombre, precioVenta, precioCompra, url, paginaReferencia ) {
     this.id = id;
@@ -8,6 +9,8 @@ class Moneda {
     this.paginaReferencia = paginaReferencia;
     }
 }
+
+
 
 const monedas = []
 monedas.push (new Moneda (1, "Real", 35, 40, url="img/reales-brasil.jpg",href="real.html"));
@@ -40,15 +43,23 @@ function convertir (){
     let euroCompra = 295;
     let realCompra= 35;
 
+   
+    
+
   if(document.getElementById("unoCompra").checked){
     resultado = monto * dolarCompra
     function mostrarResultadoCompra(){
+      
+
       let div = document.createElement("div")
       div.innerHTML=`<h2> su total es ${resultado}`
-    
+     
       mostrarTotalCompra.append(div);
+    
+      Swal.fire(`El total es de ${resultado}`)
     }
       mostrarResultadoCompra();
+    
 
   }else if(document.getElementById("dosCompra").checked){
       resultado = monto * euroCompra
@@ -58,6 +69,7 @@ function convertir (){
         div.innerHTML=`<h2> su total es ${resultado}`
       
         mostrarTotalCompra.append(div);
+        Swal.fire(`El total es de ${resultado}`)
       }
         mostrarResultadoCompra();
 
@@ -70,10 +82,16 @@ function convertir (){
       div.innerHTML=`<h2> su total es ${resultado}`
     
       mostrarTotalCompra.append(div);
+      Swal.fire(`El total es de ${resultado}`)
     }
       mostrarResultadoCompra();
   }else{
-    alert("ingrese una opcion valida")
+    Swal.fire({
+      icon: 'error',
+      title: 'Oops...',
+      text: 'No ingresaste una opcion valida!',
+      
+    })
   }
   
 }
@@ -98,6 +116,7 @@ function convertirVenta(){
       
     
       mostrarTotal.append(div);
+      Swal.fire(`El total es de ${resultadoVenta}`)
     }
     mostrarResultadoVenta()
 
@@ -112,6 +131,7 @@ function convertirVenta(){
       
     
       mostrarTotal.append(div);
+      Swal.fire(`El total es de ${resultadoVenta}`)
     }
     mostrarResultadoVenta()
 
@@ -125,10 +145,16 @@ function convertirVenta(){
       
     
       mostrarTotal.append(div);
+      Swal.fire(`El total es de ${resultadoVenta}`)
     }
     mostrarResultadoVenta()
   }else{
-    alert("ingrese una opcion valida")
+    Swal.fire({
+      icon: 'error',
+      title: 'Oops...',
+      text: 'No ingresaste una opcion valida!',
+      
+    })
   }
   
 }
