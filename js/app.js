@@ -11,6 +11,29 @@ class Moneda {
 }
 
 
+const lista = document.getElementById("lista")
+
+fetch(`./js/prod.json`)
+.then(response => response.json())
+.then(res=> {
+   res.forEach(post => {   
+     const div = document.createElement("div");
+     div.className = "card col-8 col-md-6 col-lg-3"
+     div.innerHTML = `
+     <div class="cards-container">
+     <img src="${post.url}" class="card-img-top" alt="Moneda Extranjera">
+       <div class="card-body">
+       <h5 class="card-title">${post.nombre}</h5>
+       <p class="card-text">Compra o Vende con la mejor cotización</p>
+       <p>Venta $${post.precioVenta} - Compra $${post.precioCompra}</p>
+ 
+     </div>`;
+
+                 lista.append(div);
+
+            })     
+})
+
 
 const monedas = []
 monedas.push (new Moneda (1, "Real", 35, 40, url="img/reales-brasil.jpg",href="real.html"));
@@ -21,21 +44,7 @@ let cardMoneda = document.getElementById ("cardMoneda");
 
 localStorage.setItem("array de monedas", monedas)
 
-for (const moneda of monedas){
-    let div = document.createElement ("div");
-    div.className = "card col-8 col-md-6 col-lg-3"
-    div.innerHTML = `
-    <div class="cards-container">
-    <img src="${moneda.url}" class="card-img-top" alt="Moneda Extranjera">
-      <div class="card-body">
-      <h5 class="card-title">${moneda.nombre}</h5>
-      <p class="card-text">Compra o Vende con la mejor cotización</p>
-      <p>Venta $${moneda.precioVenta} - Compra $${moneda.precioCompra}</p>
 
-    </div>`
-    cardMoneda.append (div);
-    
-}
 function convertir (){
   let monto = parseInt( document.getElementById("monto").value);
     let resultado = 0;
