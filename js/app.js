@@ -1,4 +1,6 @@
 
+
+// constructor para generar los objetos
 class Moneda {
     constructor (id, nombre, precioVenta, precioCompra, url, paginaReferencia ) {
     this.id = id;
@@ -13,6 +15,8 @@ class Moneda {
 
 const lista = document.getElementById("lista")
 
+
+//fetch con la funcion para consumir datos de mis productos desde JSON y generar las cards con forEach
 fetch(`./js/prod.json`)
 .then(response => response.json())
 .then(res=> {
@@ -34,7 +38,7 @@ fetch(`./js/prod.json`)
             })     
 })
 
-
+// push de mis objetos al array monedas
 const monedas = []
 monedas.push (new Moneda (1, "Real", 35, 40, url="img/reales-brasil.jpg",href="real.html"));
 monedas.push (new Moneda (2, "Dolar", 280, 290, url = "img/dolarbillete.png",href="dolar.html"));
@@ -45,15 +49,27 @@ let cardMoneda = document.getElementById ("cardMoneda");
 localStorage.setItem("array de monedas", monedas)
 
 
+// funciones para convertir con condicionales segun la opcion que elija el cliente
 function convertir (){
-  let monto = parseInt( document.getElementById("monto").value);
-    let resultado = 0;
-    let dolarCompra = 280 ;
-    let euroCompra = 295;
-    let realCompra= 35;
 
-   
+  
+  let monto = parseInt( document.getElementById("monto").value);
+
+
+    let resultado = 0;
     
+    // metodo con find para obtener el valor del objeto
+    const valorDolar = monedas.find ((el) =>  el.nombre =="Dolar" )
+   
+   let dolarCompra = valorDolar.precioCompra
+
+   const valorReal = monedas.find((el) => el.nombre == "Real")
+
+   let realCompra = valorReal.precioCompra
+
+   const valorEuro = monedas.find ((el) => el.nombre =="Euro")
+    let euroCompra= valorEuro.precioCompra
+
 
   if(document.getElementById("unoCompra").checked){
     resultado = monto * dolarCompra
@@ -61,11 +77,11 @@ function convertir (){
       
 
       let div = document.createElement("div")
-      div.innerHTML=`<h2> su total es ${resultado}`
+      div.innerHTML=`<h2> su total es $ ${resultado}`
      
       mostrarTotalCompra.append(div);
     
-      Swal.fire(`El total es de ${resultado}`)
+      Swal.fire(`El total es de $ ${resultado}`)
     }
       mostrarResultadoCompra();
     
@@ -75,10 +91,10 @@ function convertir (){
    
       function mostrarResultadoCompra(){
         let div = document.createElement("div")
-        div.innerHTML=`<h2> su total es ${resultado}`
+        div.innerHTML=`<h2> su total es $ ${resultado}`
       
         mostrarTotalCompra.append(div);
-        Swal.fire(`El total es de ${resultado}`)
+        Swal.fire(`El total es de $ ${resultado}`)
       }
         mostrarResultadoCompra();
 
@@ -88,10 +104,10 @@ function convertir (){
 
     function mostrarResultadoCompra(){
       let div = document.createElement("div")
-      div.innerHTML=`<h2> su total es ${resultado}`
+      div.innerHTML=`<h2> su total es $ ${resultado}`
     
       mostrarTotalCompra.append(div);
-      Swal.fire(`El total es de ${resultado}`)
+      Swal.fire(`El total es de $ ${resultado}`)
     }
       mostrarResultadoCompra();
   }else{
@@ -109,9 +125,19 @@ function convertir (){
 function convertirVenta(){
   let montoVenta = parseInt(document.getElementById("montoVenta").value);
   let resultadoVenta= 0;
-  let dolarVenta= 290;
-  let realVenta = 40;
-  let euroVenta = 305;
+ 
+const valorVentaDolar = monedas.find ((el) => el.nombre =="Dolar")
+
+ let dolarVenta = valorVentaDolar.precioVenta
+
+const valorVentaEuro = monedas.find ((el) => el.nombre =="Euro")
+
+  let euroVenta = valorVentaEuro.precioVenta
+
+
+const valorVentaReal = monedas.find ((el) => el.nombre == "Real")
+
+  let realVenta = valorVentaReal.precioVenta
 
   console.log(montoVenta)
   if(document.getElementById("unoVenta").checked){
@@ -121,11 +147,11 @@ function convertirVenta(){
     function mostrarResultadoVenta(){
 
       let div = document.createElement("div")
-      div.innerHTML=`<h2> su total es ${resultadoVenta} `
+      div.innerHTML=`<h2> su total es $ ${resultadoVenta} `
       
     
       mostrarTotal.append(div);
-      Swal.fire(`El total es de ${resultadoVenta}`)
+      Swal.fire(`El total es de $ ${resultadoVenta}`)
     }
     mostrarResultadoVenta()
 
@@ -136,7 +162,7 @@ function convertirVenta(){
     function mostrarResultadoVenta(){
 
       let div = document.createElement("div")
-      div.innerHTML=`<h2> su total es ${resultadoVenta} `
+      div.innerHTML=`<h2> su total es $ ${resultadoVenta} `
       
     
       mostrarTotal.append(div);
@@ -145,19 +171,21 @@ function convertirVenta(){
     mostrarResultadoVenta()
 
   }else if (document.getElementById("tresVenta").checked){
-    resultado = montoVenta * realVenta
+    resultadoVenta = montoVenta * realVenta
     
     function mostrarResultadoVenta(){
 
       let div = document.createElement("div")
-      div.innerHTML=`<h2> su total es ${resultadoVenta} `
+      div.innerHTML=`<h2> su total es $ ${resultadoVenta} `
       
     
       mostrarTotal.append(div);
-      Swal.fire(`El total es de ${resultadoVenta}`)
+      Swal.fire(`El total es de $ ${resultadoVenta}`)
     }
     mostrarResultadoVenta()
   }else{
+
+    // alert de libreria
     Swal.fire({
       icon: 'error',
       title: 'Oops...',
